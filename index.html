@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A1230">
-<meta name="description" content="Capodanno 2027 all'Hotel delle Stelle di Sangineto Lido: Gran Cenone di San Silvestro, notte in hotel e soggiorno dal 31 dicembre al 2 gennaio.">
+<meta name="description" content="Capodanno 2027 all'Hotel delle Stelle di Sangineto Lido: Gran Cenone di San Silvestro a 90 euro, soggiorno dal 31 dicembre al 2 gennaio a 310 euro, solo pernottamento a 60 euro a notte.">
 <meta property="og:title" content="Capodanno 2027 all'Hotel delle Stelle">
-<meta property="og:description" content="Gran Cenone di San Silvestro, notte in hotel e soggiorno dal 31/12 al 02/01 a Sangineto Lido.">
+<meta property="og:description" content="Gran Cenone di San Silvestro, musica dal vivo e DJ set, soggiorno dal 31/12 al 02/01 a Sangineto Lido.">
 <meta property="og:type" content="website">
 <title>Capodanno 2027 all'Hotel delle Stelle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,8 +94,8 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 3vh, 40px);
-  padding-block: clamp(14px, 3vh, 44px);
+  gap: clamp(10px, 2.2vh, 40px);
+  padding-block: clamp(12px, 2.6vh, 44px);
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
@@ -135,14 +135,14 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   line-height: .92;
 }
 .t-word {
-  font-size: clamp(32px, min(11.6vw, 6.6vh), 88px);
+  font-size: clamp(32px, min(11.6vw, 6.2vh), 88px);
   letter-spacing: .05em;
   text-transform: uppercase;
   color: var(--ink);
   text-shadow: 0 2px 24px var(--sky);
 }
 .t-year {
-  font-size: clamp(64px, min(27vw, 13vh), 190px);
+  font-size: clamp(58px, min(24vw, 10.5vh), 190px);
   letter-spacing: .02em;
   line-height: .98;
   padding-inline: .04em;
@@ -205,9 +205,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   align-items: center;
   gap: 12px;
   width: 100%;
-  min-height: 60px;
+  min-height: 56px;
   margin: 0;
-  padding: 9px 10px 9px 9px;
+  padding: 8px 10px 8px 8px;
   border: 1px solid var(--line);
   border-radius: var(--r);
   background: linear-gradient(180deg, var(--panel-hi), var(--panel));
@@ -277,6 +277,10 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 
 .foot {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   font-size: 13.5px;
   line-height: 1.55;
   text-align: center;
@@ -284,7 +288,29 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   animation: rise .9s var(--ease) backwards;
   animation-delay: 800ms;
 }
-.foot a { color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid var(--line); }
+.contact { margin: 0; font-size: 14.5px; }
+.contact a, .inline-link { color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid var(--line); }
+.social { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 10px; }
+.social-label { font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--gold-tint);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  text-decoration: none;
+  transition: border-color .2s ease, color .2s ease, transform .15s ease;
+}
+.social-btn svg { width: 14px; height: 14px; color: var(--gold); }
+.social-btn:hover { border-color: var(--gold); color: var(--gold-hi); }
+.social-btn:active { transform: scale(.97); }
+.social-btn:focus-visible, .contact a:focus-visible, .inline-link:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
 .bozza-note { display: none; }
 
 @media (min-width: 760px) {
@@ -434,6 +460,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .courses { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .courses li { display: grid; grid-template-columns: 7.2em 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dotted var(--line-soft); }
 .courses li:last-child { border-bottom: 0; }
+.dishes { display: flex; flex-direction: column; gap: 8px; }
 .course { padding-top: .2em; font-family: var(--font-display); font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
 
 .days { display: flex; flex-direction: column; }
@@ -480,6 +507,22 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .price-note { flex-basis: 100%; font-size: 15.5px; color: var(--muted); }
 
 .note { font-size: 15.5px; font-style: italic; color: var(--muted); }
+.quote { font-family: var(--font-display); font-size: 21px; line-height: 1.3; color: var(--gold-hi); text-wrap: balance; }
+.pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  background: var(--panel);
+}
+.pair > div { min-width: 0; }
+.pair p { margin: 0; }
+.pair-title { font-family: var(--font-display); font-size: 18.5px; line-height: 1.25; }
+.pair-sub { font-size: 15.5px; color: var(--muted); }
 
 .addr {
   display: flex;
@@ -573,7 +616,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 </style>
 </head>
 <body>
-<div class="app bozza">
+<div class="app">
   <canvas id="sky" aria-hidden="true"></canvas>
 
   <main class="stage" id="app-main">
@@ -591,7 +634,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
           <span class="cd-sep" aria-hidden="true">·</span>
           <div class="cd-cell"><span class="cd-num" id="cd-h">11</span><span class="cd-unit">ore</span></div>
           <span class="cd-sep" aria-hidden="true">·</span>
-          <div class="cd-cell"><span class="cd-num" id="cd-m">55</span><span class="cd-unit">min</span></div>
+          <div class="cd-cell"><span class="cd-num" id="cd-m">35</span><span class="cd-unit">min</span></div>
           <span class="cd-sep" aria-hidden="true">·</span>
           <div class="cd-cell"><span class="cd-num" id="cd-s">00</span><span class="cd-unit">sec</span></div>
         </div>
@@ -600,7 +643,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
     </header>
 
     <nav class="menu" aria-label="Proposte di Capodanno">
-      <p class="hint">Tocca per scoprire <b>dettagli e prezzi</b></p>
+      <p class="hint">Tocca per scoprire <b>menù e prezzi</b></p>
 
       <button class="opt" type="button" style="--i:0" data-open="cenone" aria-controls="panel-cenone" aria-expanded="false">
         <span class="ico" aria-hidden="true">
@@ -608,7 +651,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         </span>
         <span class="opt-txt">
           <span class="opt-title">Gran Cenone di San Silvestro</span>
-          <span class="opt-sub">31 dicembre · menù e prezzi</span>
+          <span class="opt-sub">€ 90 a persona · bevande incluse</span>
         </span>
         <span class="opt-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
       </button>
@@ -619,7 +662,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         </span>
         <span class="opt-txt">
           <span class="opt-title">Notte in hotel</span>
-          <span class="opt-sub">Cenone e camera per la notte</span>
+          <span class="opt-sub">Solo pernottamento · € 60 a notte</span>
         </span>
         <span class="opt-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
       </button>
@@ -630,7 +673,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         </span>
         <span class="opt-txt">
           <span class="opt-title">Soggiorno 31/12 – 02/01</span>
-          <span class="opt-sub">2 notti sul mare di Sangineto</span>
+          <span class="opt-sub">2 notti con cenone · € 310</span>
         </span>
         <span class="opt-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
       </button>
@@ -641,16 +684,20 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         </span>
         <span class="opt-txt">
           <span class="opt-title">Dove siamo</span>
-          <span class="opt-sub">Indirizzo e mappa</span>
+          <span class="opt-sub">Sangineto Lido · indirizzo e mappa</span>
         </span>
         <span class="opt-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
       </button>
     </nav>
 
-    <p class="foot">
-      Info e prenotazioni: <a data-tel href="#"><span data-tel-text>+39 000 000 0000</span></a>
-      <span class="bozza-note">Bozza: i campi tratteggiati sono da completare.</span>
-    </p>
+    <footer class="foot">
+      <div class="social">
+        <span class="social-label">Seguici</span>
+        <a class="social-btn" data-social="facebook" href="#">Facebook<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <a class="social-btn" data-social="instagram" href="#">Instagram<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+      <p class="contact"><a data-tel href="#"><span data-tel-text>0982 96091</span></a> · <a data-mail="Capodanno 2027" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
+    </footer>
   </main>
 
   <div class="scrim" id="scrim" hidden></div>
@@ -661,52 +708,55 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
     <header class="sheet-head">
       <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-14 8 12)"><path d="M5.8 4h4.4l-.5 5.6a1.7 1.7 0 0 1-3.4 0z"/><path d="M8 11.4V19M5.8 19h4.4"/></g><g transform="rotate(14 16 12)"><path d="M13.8 4h4.4l-.5 5.6a1.7 1.7 0 0 1-3.4 0z"/><path d="M16 11.4V19M13.8 19h4.4"/></g><path d="M12 1.5v2M10.6 2.5h2.8"/></svg></span>
       <div>
-        <p class="kicker">31 dicembre 2026</p>
+        <p class="kicker">Giovedì 31 dicembre</p>
         <h2 id="h-cenone">Gran Cenone di San Silvestro</h2>
       </div>
       <button class="close" type="button" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Chiudi</span></button>
     </header>
     <div class="sheet-body">
-      <p class="lead">L'ultima sera del 2026 vi aspetta a tavola: menù delle feste, musica dal vivo e il brindisi di mezzanotte con tutta la sala.</p>
+      <p class="lead">L'ultima sera del 2026 comincia con l'aperitivo nella hall, prosegue a tavola con un menù di mare e si chiude a fine veglione con cornetto e cappuccino.</p>
       <dl class="facts">
         <div><dt>Quando</dt><dd>Giovedì 31 dicembre 2026</dd></div>
-        <div><dt>Arrivo</dt><dd><span class="tbd">Dalle ore 20:30</span></dd></div>
-        <div><dt>Dove</dt><dd>Hotel delle Stelle Beach Resort, Sangineto Lido</dd></div>
-        <div><dt>Posti</dt><dd>Solo su prenotazione</dd></div>
+        <div><dt>Si comincia</dt><dd>Aperitivo di benvenuto nella hall</dd></div>
+        <div><dt>Musica</dt><dd>Dal vivo e DJ set, con Discopatici Live Band e GF Events</dd></div>
+        <div><dt>Bevande</dt><dd>Incluse</dd></div>
       </dl>
 
       <h3>Il menù</h3>
       <ul class="courses">
-        <li><span class="course">Benvenuto</span><span class="tbd">Aperitivo con bollicine e stuzzichini caldi</span></li>
-        <li><span class="course">Antipasti</span><span class="tbd">Crudo di mare e frittura di paranza</span></li>
-        <li><span class="course">Primo</span><span class="tbd">Paccheri allo scoglio</span></li>
-        <li><span class="course">Secondo</span><span class="tbd">Pescato del giorno al forno con patate</span></li>
-        <li><span class="course">Dolce</span><span class="tbd">Panettone artigianale e dolci delle feste</span></li>
-        <li><span class="course">Mezzanotte</span><span class="tbd">Cotechino e lenticchie, spumante e uva</span></li>
-      </ul>
-
-      <h3>La serata</h3>
-      <ul class="stars">
-        <li><span class="tbd">Musica dal vivo durante la cena e dopo la mezzanotte</span></li>
-        <li>Brindisi di mezzanotte con spumante</li>
-        <li>Tavolo riservato al momento della prenotazione</li>
+        <li><span class="course">Aperitivo</span><span>Prosecco, frittini misti, gamberi in pastella, canapé e vol-au-vent</span></li>
+        <li><span class="course">Antipasti</span>
+          <span class="dishes">
+            <span>Cheesecake agli agrumi con tartare di salmone, aneto e soia</span>
+            <span>Tonno fresco tataki al sesamo nero con maionese di cipolla rossa</span>
+            <span>Baccalà mantecato su crostone al rosmarino, polvere di olive nere e olio al prezzemolo</span>
+          </span>
+        </li>
+        <li><span class="course">Primo</span><span>Paccheri rigati trafilati al bronzo con astice, pachino rosso, crema di datterino giallo e crumble al basilico</span></li>
+        <li><span class="course">Secondo</span><span>Ricciola pacifica con panure alle mandorle su cimette di rape saltate</span></li>
+        <li><span class="course">Tradizione</span><span>Zampone e lenticchie in umido</span></li>
+        <li><span class="course">Dolce</span><span>Panettone artigianale, frutta e bollicine</span></li>
+        <li><span class="course">Fine veglione</span><span>Cornetto e cappuccino</span></li>
       </ul>
 
       <div class="price">
-        <span class="price-label">Prezzo a persona</span>
-        <span class="price-val tbd">€ 00</span>
-        <span class="price-note tbd">Bambini fino a 10 anni € 00 · bevande incluse</span>
+        <span class="price-label">A persona</span>
+        <span class="price-val">€ 90</span>
+        <span class="price-note">Bevande incluse</span>
       </div>
-      <p class="note">I posti sono limitati: prenotate per tempo.</p>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" data-wa="Buongiorno, vorrei prenotare il Gran Cenone di San Silvestro del 31 dicembre. Saremmo in ___ persone." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Prenota su WhatsApp
-      </a>
-      <a class="btn btn-line" data-tel href="#">
+      <a class="btn btn-gold" data-tel href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama
+        Chiama per prenotare
+      </a>
+      <a class="btn btn-line" data-mail="Prenotazione Gran Cenone di San Silvestro" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+        Scrivi una email
+      </a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il Gran Cenone di San Silvestro del 31 dicembre." href="#" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
+        WhatsApp
       </a>
     </footer>
   </section>
@@ -717,41 +767,48 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
     <header class="sheet-head">
       <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.4 6.4 0 0 0 10.1 10.1z"/><path d="M17 3.2l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z"/></svg></span>
       <div>
-        <p class="kicker">31 dic → 1° gen</p>
+        <p class="kicker">Solo pernottamento</p>
         <h2 id="h-notte">Notte in hotel</h2>
       </div>
       <button class="close" type="button" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Chiudi</span></button>
     </header>
     <div class="sheet-body">
-      <p class="lead">Dopo il brindisi vi basta salire in camera, senza rimettervi in auto nel cuore della notte. La mattina del 1° gennaio vi aspetta la colazione, con tutta la calma che serve.</p>
-      <dl class="facts">
-        <div><dt>Arrivo</dt><dd>31 dicembre, check-in <span class="tbd">dalle ore 15:00</span></dd></div>
-        <div><dt>Partenza</dt><dd>1° gennaio, check-out <span class="tbd">entro le ore 12:00</span></dd></div>
-        <div><dt>Camera</dt><dd><span class="tbd">Doppia, vista mare su richiesta</span></dd></div>
-      </dl>
-
-      <h3>Cosa comprende</h3>
-      <ul class="stars">
-        <li><span class="tbd">Gran Cenone di San Silvestro</span></li>
-        <li>Pernottamento della notte del 31 dicembre</li>
-        <li>Colazione del 1° gennaio, <span class="tbd">servita fino alle 11:00</span></li>
-        <li><span class="tbd">Parcheggio interno gratuito</span></li>
-      </ul>
+      <p class="lead">Dopo il brindisi vi basta salire in camera, senza rimettervi in auto nel cuore della notte.</p>
 
       <div class="price">
-        <span class="price-label">A persona, in camera doppia</span>
-        <span class="price-val"><small>da</small> <span class="tbd">€ 00</span></span>
-        <span class="price-note tbd">Supplemento singola € 00 · bambini in camera con i genitori € 00</span>
+        <span class="price-label">A persona, a notte</span>
+        <span class="price-val">€ 60</span>
+        <span class="price-note">Formula solo pernottamento</span>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Bambini</dt><dd>Gratis fino a 3 anni, sconto del 50% dai 3 ai 13 anni</dd></div>
+      </dl>
+
+      <h3>Da abbinare</h3>
+      <div class="pair">
+        <div>
+          <p class="pair-title">Gran Cenone di San Silvestro</p>
+          <p class="pair-sub">€ 90 a persona, bevande incluse</p>
+        </div>
+        <button class="chip" type="button" data-switch="cenone">
+          <span>Vedi il menù</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" data-wa="Buongiorno, vorrei informazioni sulla Notte in hotel del 31 dicembre (cenone e pernottamento)." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Prenota su WhatsApp
-      </a>
-      <a class="btn btn-line" data-tel href="#">
+      <a class="btn btn-gold" data-tel href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama
+        Chiama per prenotare
+      </a>
+      <a class="btn btn-line" data-mail="Prenotazione notte in hotel - Capodanno 2027" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+        Scrivi una email
+      </a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sulla formula solo pernottamento per Capodanno." href="#" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
+        WhatsApp
       </a>
     </footer>
   </section>
@@ -768,18 +825,34 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       <button class="close" type="button" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Chiudi</span></button>
     </header>
     <div class="sheet-body">
+      <p class="quote">Giorni di festa con intrattenimento e tempo per stare bene.</p>
       <p class="lead">Due notti per salutare il 2026 e cominciare il 2027 senza fretta, con il mare a due passi.</p>
+
+      <div class="price">
+        <span class="price-label">A persona, intero soggiorno</span>
+        <span class="price-val">€ 310</span>
+        <span class="price-note">Bambini gratis fino a 3 anni, sconto del 50% dai 3 ai 13 anni</span>
+      </div>
+
+      <h3>Cosa comprende</h3>
+      <ul class="stars">
+        <li>2 notti di soggiorno</li>
+        <li>2 colazioni</li>
+        <li>Gran Cenone di San Silvestro</li>
+        <li>Pranzo e cena del 1° gennaio</li>
+        <li>Animazione per tutta la durata del soggiorno</li>
+      </ul>
 
       <h3>Il programma</h3>
       <div class="days">
         <div class="day">
           <div class="day-date"><b>31</b><span>dic</span></div>
           <div>
-            <p class="day-title"><small>Giovedì</small>Arrivo e cenone</p>
+            <p class="day-title"><small>Giovedì</small>Arrivo e Gran Cenone</p>
             <ul class="stars">
-              <li>Check-in <span class="tbd">dalle ore 15:00</span></li>
+              <li>Aperitivo di benvenuto nella hall</li>
               <li>Gran Cenone di San Silvestro</li>
-              <li>Brindisi di mezzanotte</li>
+              <li>Musica dal vivo e DJ set</li>
             </ul>
           </div>
         </div>
@@ -788,10 +861,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
           <div>
             <p class="day-title"><small>Venerdì</small>Il primo giorno dell'anno</p>
             <ul class="stars">
-              <li>Colazione fino a tardi</li>
-              <li><span class="tbd">Pranzo di Capodanno</span></li>
-              <li>Passeggiata sul lungomare</li>
-              <li><span class="tbd">Cena in hotel</span></li>
+              <li>Colazione</li>
+              <li>Pranzo di Capodanno</li>
+              <li>Cena</li>
             </ul>
           </div>
         </div>
@@ -800,35 +872,35 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
           <div>
             <p class="day-title"><small>Sabato</small>Partenza</p>
             <ul class="stars">
-              <li>Colazione</li>
-              <li>Check-out <span class="tbd">entro le ore 12:00</span></li>
+              <li>Colazione e saluti</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <h3>Cosa comprende</h3>
-      <ul class="stars">
-        <li>2 notti in camera doppia</li>
-        <li>Gran Cenone di San Silvestro</li>
-        <li>Colazioni del 1° e del 2 gennaio</li>
-        <li><span class="tbd">Pranzo e cena del 1° gennaio</span></li>
-      </ul>
-
-      <div class="price">
-        <span class="price-label">A persona, intero soggiorno</span>
-        <span class="price-val"><small>da</small> <span class="tbd">€ 00</span></span>
-        <span class="price-note tbd">Bambini fino a 12 anni: sconto del 00%</span>
+      <div class="pair">
+        <div>
+          <p class="pair-title">Il menù del Gran Cenone</p>
+          <p class="pair-sub">Incluso nel soggiorno</p>
+        </div>
+        <button class="chip" type="button" data-switch="cenone">
+          <span>Vedi il menù</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" data-wa="Buongiorno, vorrei informazioni sul soggiorno di Capodanno dal 31 dicembre al 2 gennaio." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Prenota su WhatsApp
-      </a>
-      <a class="btn btn-line" data-tel href="#">
+      <a class="btn btn-gold" data-tel href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama
+        Chiama per prenotare
+      </a>
+      <a class="btn btn-line" data-mail="Prenotazione soggiorno di Capodanno 31/12 - 02/01" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+        Scrivi una email
+      </a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sul soggiorno di Capodanno dal 31 dicembre al 2 gennaio." href="#" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
+        WhatsApp
       </a>
     </footer>
   </section>
@@ -854,12 +926,15 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         </button>
       </div>
 
+      <dl class="facts">
+        <div><dt>Telefono</dt><dd><a class="inline-link" data-tel href="#"><span data-tel-text>0982 96091</span></a></dd></div>
+        <div><dt>Email</dt><dd><a class="inline-link" data-mail="Capodanno 2027" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></dd></div>
+      </dl>
+
       <h3>Come arrivare</h3>
       <ul class="stars">
         <li>In auto: lungo la SS18 Tirrena Inferiore, all'altezza di Sangineto Lido</li>
-        <li>In treno: stazione di <span class="tbd">Belvedere Marittimo</span>, linea Tirrenica</li>
         <li>In aereo: aeroporto di Lamezia Terme</li>
-        <li><span class="tbd">Parcheggio interno riservato agli ospiti</span></li>
       </ul>
     </div>
     <footer class="sheet-cta">
@@ -879,8 +954,11 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 (() => {
   /* ============ CONTATTI: modifica solo qui ============ */
   const CONTATTI = {
-    telefono: '+39 000 000 0000',  // come deve apparire sulla pagina
-    whatsapp: '390000000000'       // solo cifre, con il 39 davanti
+    telefono: '0982 96091',
+    email: 'info@hoteldellestelle.it',
+    facebook: 'https://www.facebook.com/',   // incolla il link della pagina Facebook dell'hotel
+    instagram: 'https://www.instagram.com/', // incolla il link del profilo Instagram dell'hotel
+    whatsapp: ''                             // facoltativo: solo cifre col 39 davanti (es. 393331234567); vuoto = pulsante nascosto
   };
   const INDIRIZZO = 'Hotel delle Stelle Beach Resort, Viale della Libertà 29, 87020 Sangineto Lido (CS)';
   /* ===================================================== */
@@ -890,11 +968,20 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- contatti ---------- */
-  const placeholder = /0{6,}/.test(CONTATTI.telefono.replace(/\D/g, ''));
-  const telHref = 'tel:' + CONTATTI.telefono.replace(/[^\d+]/g, '');
+  const telDigits = CONTATTI.telefono.replace(/[^\d+]/g, '');
+  const telHref = 'tel:' + (telDigits.startsWith('+') ? telDigits : '+39' + telDigits);
   $$('[data-tel]').forEach(a => { a.href = telHref; });
-  $$('[data-tel-text]').forEach(s => { s.textContent = CONTATTI.telefono; s.classList.toggle('tbd', placeholder); });
+  $$('[data-tel-text]').forEach(s => { s.textContent = CONTATTI.telefono; });
+  $$('[data-mail]').forEach(a => { a.href = 'mailto:' + CONTATTI.email + '?subject=' + encodeURIComponent(a.dataset.mail); });
+  $$('[data-mail-text]').forEach(s => { s.textContent = CONTATTI.email; });
+  $$('[data-social]').forEach(a => {
+    a.href = CONTATTI[a.dataset.social];
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
   $$('[data-wa]').forEach(a => {
+    if (!CONTATTI.whatsapp) { a.hidden = true; return; }
+    a.hidden = false;
     a.href = 'https://wa.me/' + CONTATTI.whatsapp + '?text=' + encodeURIComponent(a.dataset.wa);
     a.target = '_blank';
     a.rel = 'noopener';
@@ -1167,6 +1254,12 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
     }
   }));
   $$('[data-close]').forEach(b => b.addEventListener('click', closePanel));
+  // passa da un foglio all'altro (es. "Vedi il menù") senza aggiungere passi alla cronologia
+  $$('[data-switch]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.switch;
+    openPanel(id);
+    try { location.replace('#' + id); } catch (_) {}
+  }));
   scrim.addEventListener('click', closePanel);
   window.addEventListener('hashchange', route);
 
