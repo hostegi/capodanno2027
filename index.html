@@ -465,6 +465,52 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .courses li { display: grid; grid-template-columns: 7.2em 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dotted var(--line-soft); }
 .courses li:last-child { border-bottom: 0; }
 .dishes { display: flex; flex-direction: column; gap: 8px; }
+.acts {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--panel);
+}
+.acts-logos { flex: none; display: flex; align-items: center; gap: 8px; }
+.acts-logos img { display: block; height: 46px; width: auto; }
+.acts-text { margin: 0; min-width: 0; font-size: 15.5px; line-height: 1.35; }
+.acts-label { display: block; margin-bottom: 2px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+
+.scroll-cue { position: relative; z-index: 2; flex: none; height: 0; }
+.scroll-cue-inner {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 76px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 max(20px, env(safe-area-inset-right, 0px)) 10px 0;
+  background: linear-gradient(180deg, transparent, var(--panel) 85%);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.sheet.can-scroll .scroll-cue-inner { opacity: 1; transform: none; }
+.cue-pill {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--panel-hi);
+  color: var(--gold-hi);
+  cursor: pointer;
+  box-shadow: 0 6px 16px -6px var(--drop);
+  animation: nudge 1.6s ease-in-out infinite;
+}
+.sheet.can-scroll .cue-pill { pointer-events: auto; }
+.cue-pill svg { width: 14px; height: 14px; margin-top: 2px; }
+@keyframes nudge { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(4px); } }
 .menu-card {
   display: flex;
   flex-direction: column;
@@ -603,23 +649,26 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 
 .sheet-cta {
   flex: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 14px max(20px, env(safe-area-inset-right, 0px)) 16px max(20px, env(safe-area-inset-left, 0px));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px max(20px, env(safe-area-inset-right, 0px)) 14px max(20px, env(safe-area-inset-left, 0px));
   border-top: 1px solid var(--line-soft);
   background: var(--panel);
 }
 .btn {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  min-height: 52px;
-  padding: 0 16px;
+  gap: 4px;
+  min-height: 58px;
+  padding: 6px 4px;
   border-radius: 12px;
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 15px;
+  line-height: 1.1;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
@@ -627,13 +676,13 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .btn svg { width: 20px; height: 20px; flex: none; }
 .btn:active { transform: translateY(1px) scale(.985); }
 .btn-gold {
-  flex: 1 1 13rem;
   background: linear-gradient(180deg, var(--gold-hi), var(--gold));
   color: var(--on-gold);
   box-shadow: 0 8px 20px -8px var(--glow), inset 0 1px 0 var(--spark);
 }
 .btn-gold:hover { box-shadow: 0 10px 26px -6px var(--glow), inset 0 1px 0 var(--spark); }
-.btn-line { flex: 1 1 13rem; border: 1px solid var(--line); color: var(--ink); }
+.btn-line { border: 1px solid var(--line); color: var(--ink); }
+@media (min-width: 480px) { .btn { flex-direction: row; gap: 8px; min-height: 50px; padding: 0 10px; font-size: 16px; } }
 .cta-mail { flex-basis: 100%; margin: 2px 0 0; text-align: center; font-size: 14.5px; color: var(--muted); }
 .cta-mail a { color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid var(--line); }
 .btn-line:hover { border-color: var(--gold); }
@@ -764,13 +813,14 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       <button class="close" type="button" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Chiudi</span></button>
     </header>
     <div class="sheet-body">
-      <p class="lead">L'ultima sera del 2026 comincia con l'aperitivo nella hall, prosegue a tavola con un menù di mare e si chiude a fine veglione con cornetto e cappuccino.</p>
-      <dl class="facts">
-        <div><dt>Quando</dt><dd>Giovedì 31 dicembre 2026</dd></div>
-        <div><dt>Si comincia</dt><dd>Aperitivo di benvenuto nella hall</dd></div>
-        <div><dt>Musica</dt><dd>Dal vivo con Discopatici Live Band e DJ set con Giammarco Fiorillo</dd></div>
-        <div><dt>Bevande</dt><dd>Incluse</dd></div>
-      </dl>
+      <p class="lead">L'ultima sera del 2026 comincia con l'aperitivo di benvenuto nella hall e prosegue nella nostra sala ristorante.</p>
+      <div class="acts">
+        <div class="acts-logos">
+          <img src="data:image/webp;base64,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" alt="Discopatici Live Band" width="156" height="160">
+          <img src="data:image/webp;base64,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" alt="GF Events, Giammarco Fiorillo" width="134" height="160">
+        </div>
+        <p class="acts-text"><span class="acts-label">Intrattenimento musicale</span>a cura di Discopatici Live Band e Giammarco Fiorillo</p>
+      </div>
 
       <div class="menu-card">
         <p class="mc-head">Menù di San Silvestro</p>
@@ -821,15 +871,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       </div>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" data-tel href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama per prenotare
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il Gran Cenone di San Silvestro del 31 dicembre." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Scrivi su WhatsApp
-      </a>
-      <p class="cta-mail">oppure scrivi a <a data-mail="Prenotazione Gran Cenone di San Silvestro" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
+      <a class="btn btn-gold" data-tel href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg><span>Chiama</span></a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il Gran Cenone di San Silvestro del 31 dicembre." href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg><span>WhatsApp</span></a>
+      <a class="btn btn-line" data-mail="Prenotazione Gran Cenone di San Silvestro" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span>Email</span></a>
     </footer>
   </section>
 
@@ -867,15 +911,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       </div>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" data-tel href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama per prenotare
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare la formula solo pernottamento per Capodanno." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Scrivi su WhatsApp
-      </a>
-      <p class="cta-mail">oppure scrivi a <a data-mail="Prenotazione notte in hotel - Capodanno 2027" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
+      <a class="btn btn-gold" data-tel href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg><span>Chiama</span></a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare la formula solo pernottamento per Capodanno." href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg><span>WhatsApp</span></a>
+      <a class="btn btn-line" data-mail="Prenotazione notte in hotel - Capodanno 2027" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span>Email</span></a>
     </footer>
   </section>
 
@@ -957,15 +995,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       </div>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" data-tel href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama per prenotare
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il soggiorno di Capodanno dal 31 dicembre al 2 gennaio." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Scrivi su WhatsApp
-      </a>
-      <p class="cta-mail">oppure scrivi a <a data-mail="Prenotazione soggiorno di Capodanno 31/12 - 02/01" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
+      <a class="btn btn-gold" data-tel href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg><span>Chiama</span></a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il soggiorno di Capodanno dal 31 dicembre al 2 gennaio." href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg><span>WhatsApp</span></a>
+      <a class="btn btn-line" data-mail="Prenotazione soggiorno di Capodanno 31/12 - 02/01" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span>Email</span></a>
     </footer>
   </section>
 
@@ -1003,14 +1035,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       </ul>
     </div>
     <footer class="sheet-cta">
-      <a class="btn btn-gold" id="maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel%20delle%20Stelle%20Beach%20Resort%2C%20Viale%20della%20Libert%C3%A0%2029%2C%20Sangineto%20Lido" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.2L20 4l-7.2 16.5-1.9-7.4z"/></svg>
-        Apri in Google Maps
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sul Capodanno all'Hotel delle Stelle." href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        Scrivi su WhatsApp
-      </a>
+      <a class="btn btn-gold" id="maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel%20delle%20Stelle%20Beach%20Resort%2C%20Viale%20della%20Libert%C3%A0%2029%2C%20Sangineto%20Lido" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.2L20 4l-7.2 16.5-1.9-7.4z"/></svg><span>Mappa</span></a>
+      <a class="btn btn-line" data-tel href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg><span>Chiama</span></a>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sul Capodanno all'Hotel delle Stelle." href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg><span>WhatsApp</span></a>
     </footer>
   </section>
 </div>
@@ -1274,6 +1301,7 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
     requestAnimationFrame(() => requestAnimationFrame(() => {
       sh.classList.add('is-open');
       scrim.classList.add('is-open');
+      updateCue(sh);
     }));
     document.documentElement.classList.add('has-sheet');
     main.inert = true;
@@ -1373,6 +1401,27 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
     });
     grip.style.touchAction = 'none';
   });
+
+  // invito a scorrere: compare finché sotto c'è altro contenuto
+  function updateCue(sh) {
+    const body = $('.sheet-body', sh);
+    sh.classList.toggle('can-scroll', body.scrollHeight - body.clientHeight - body.scrollTop > 28);
+  }
+  $$('.sheet').forEach(sh => {
+    const body = $('.sheet-body', sh);
+    const cue = document.createElement('div');
+    cue.className = 'scroll-cue';
+    cue.setAttribute('aria-hidden', 'true');
+    cue.innerHTML = '<div class="scroll-cue-inner"><span class="cue-pill">'
+      + '<svg viewBox="0 0 24 24"><path d="M4 7h16L12 18z" fill="currentColor"/></svg></span></div>';
+    sh.insertBefore(cue, $('.sheet-cta', sh));
+    body.addEventListener('scroll', () => updateCue(sh), { passive: true });
+    $('.cue-pill', cue).addEventListener('click', () => {
+      body.scrollBy({ top: body.clientHeight * .7, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+  window.addEventListener('resize', () => { if (current) updateCue(current); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (current) updateCue(current); });
 
   // copia indirizzo
   const copyBtn = $('#copy-addr');
