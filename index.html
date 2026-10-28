@@ -55,6 +55,7 @@
 }
 
 html, body { height: 100%; }
+html { background: var(--sky); }
 body {
   margin: 0;
   background: var(--sky);
@@ -78,9 +79,11 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   height: 100lvh;
   z-index: 0;
   pointer-events: none;
+  /* gli aloni restano lontani dai bordi: in alto e in basso lo sfondo è il blu pieno di --sky,
+     lo stesso colore che iPhone usa per le barre di sistema, così non si vedono stacchi */
   background:
-    radial-gradient(130% 60% at 50% 112%, var(--sky-hi) 0%, transparent 62%),
-    radial-gradient(80% 45% at 50% -8%, var(--panel-hi) 0%, transparent 70%),
+    radial-gradient(80% 30% at 50% 28%, var(--panel-hi) 0%, transparent 65%),
+    radial-gradient(95% 26% at 50% 70%, var(--sky-hi) 0%, transparent 60%),
     var(--sky);
 }
 
@@ -144,8 +147,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .t-year {
   font-size: clamp(58px, min(24vw, 10.5vh), 190px);
   letter-spacing: .02em;
-  line-height: .98;
-  padding-inline: .04em;
+  line-height: 1;
+  padding: .18em .06em .06em;
+  margin: -.18em 0 -.06em;
   background: linear-gradient(100deg,
     var(--gold) 0%, var(--gold) 30%, var(--gold-hi) 45%, var(--spark) 50%,
     var(--gold-hi) 55%, var(--gold) 70%, var(--gold) 100%);
@@ -461,6 +465,41 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .courses li { display: grid; grid-template-columns: 7.2em 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dotted var(--line-soft); }
 .courses li:last-child { border-bottom: 0; }
 .dishes { display: flex; flex-direction: column; gap: 8px; }
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 18px 24px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  outline: 1px solid var(--line-soft);
+  outline-offset: -7px;
+  background: radial-gradient(120% 50% at 50% 0%, var(--gold-tint), transparent 70%), var(--panel);
+}
+.menu-card p { margin: 0; }
+.mc-head { font-family: var(--font-display); font-size: 23px; line-height: 1.2; color: var(--gold-hi); }
+.mc-course { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 30em; }
+.mc-label { font-family: var(--font-display); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.dish { display: flex; flex-direction: column; gap: 3px; }
+.dish-name { font-family: var(--font-display); font-size: 18.5px; line-height: 1.3; text-wrap: balance; }
+.dish-desc { font-style: italic; font-size: 16.5px; line-height: 1.4; color: var(--muted); text-wrap: balance; }
+.orn { display: flex; align-items: center; gap: 10px; }
+.orn::before, .orn::after { content: ""; width: 34px; height: 1px; background: var(--line); }
+.orn i { display: block; width: 9px; height: 9px; background: var(--gold); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); }
+.mc-foot {
+  margin-top: 4px !important;
+  padding: 7px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold-hi);
+}
+.stars li b { font-weight: 500; color: var(--gold-hi); }
 .course { padding-top: .2em; font-family: var(--font-display); font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
 
 .days { display: flex; flex-direction: column; }
@@ -505,6 +544,15 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .price-val { font-family: var(--font-display); font-size: 34px; line-height: 1; color: var(--gold-hi); }
 .price-val small { font-family: var(--font-body); font-size: 16px; color: var(--muted); }
 .price-note { flex-basis: 100%; font-size: 15.5px; color: var(--muted); }
+.price-fine {
+  flex-basis: 100%;
+  margin: 4px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
 
 .note { font-size: 15.5px; font-style: italic; color: var(--muted); }
 .quote { font-family: var(--font-display); font-size: 21px; line-height: 1.3; color: var(--gold-hi); text-wrap: balance; }
@@ -579,13 +627,15 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 .btn svg { width: 20px; height: 20px; flex: none; }
 .btn:active { transform: translateY(1px) scale(.985); }
 .btn-gold {
-  flex: 1 1 12rem;
+  flex: 1 1 13rem;
   background: linear-gradient(180deg, var(--gold-hi), var(--gold));
   color: var(--on-gold);
   box-shadow: 0 8px 20px -8px var(--glow), inset 0 1px 0 var(--spark);
 }
 .btn-gold:hover { box-shadow: 0 10px 26px -6px var(--glow), inset 0 1px 0 var(--spark); }
-.btn-line { flex: 1 1 7rem; border: 1px solid var(--line); color: var(--ink); }
+.btn-line { flex: 1 1 13rem; border: 1px solid var(--line); color: var(--ink); }
+.cta-mail { flex-basis: 100%; margin: 2px 0 0; text-align: center; font-size: 14.5px; color: var(--muted); }
+.cta-mail a { color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid var(--line); }
 .btn-line:hover { border-color: var(--gold); }
 
 @media (min-width: 720px) {
@@ -718,31 +768,56 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       <dl class="facts">
         <div><dt>Quando</dt><dd>Giovedì 31 dicembre 2026</dd></div>
         <div><dt>Si comincia</dt><dd>Aperitivo di benvenuto nella hall</dd></div>
-        <div><dt>Musica</dt><dd>Dal vivo e DJ set, con Discopatici Live Band e GF Events</dd></div>
+        <div><dt>Musica</dt><dd>Dal vivo con Discopatici Live Band e DJ set con Giammarco Fiorillo</dd></div>
         <div><dt>Bevande</dt><dd>Incluse</dd></div>
       </dl>
 
-      <h3>Il menù</h3>
-      <ul class="courses">
-        <li><span class="course">Aperitivo</span><span>Prosecco, frittini misti, gamberi in pastella, canapé e vol-au-vent</span></li>
-        <li><span class="course">Antipasti</span>
-          <span class="dishes">
-            <span>Cheesecake agli agrumi con tartare di salmone, aneto e soia</span>
-            <span>Tonno fresco tataki al sesamo nero con maionese di cipolla rossa</span>
-            <span>Baccalà mantecato su crostone al rosmarino, polvere di olive nere e olio al prezzemolo</span>
-          </span>
-        </li>
-        <li><span class="course">Primo</span><span>Paccheri rigati trafilati al bronzo con astice, pachino rosso, crema di datterino giallo e crumble al basilico</span></li>
-        <li><span class="course">Secondo</span><span>Ricciola pacifica con panure alle mandorle su cimette di rape saltate</span></li>
-        <li><span class="course">Tradizione</span><span>Zampone e lenticchie in umido</span></li>
-        <li><span class="course">Dolce</span><span>Panettone artigianale, frutta e bollicine</span></li>
-        <li><span class="course">Fine veglione</span><span>Cornetto e cappuccino</span></li>
-      </ul>
+      <div class="menu-card">
+        <p class="mc-head">Menù di San Silvestro</p>
+        <div class="mc-course">
+          <p class="mc-label">Aperitivo di benvenuto nella hall</p>
+          <div class="dish"><p class="dish-name">Prosecco</p><p class="dish-desc">con frittini misti, gamberi in pastella, canapé e vol-au-vent</p></div>
+        </div>
+        <span class="orn" aria-hidden="true"><i></i></span>
+        <div class="mc-course">
+          <p class="mc-label">Antipasti</p>
+          <div class="dish"><p class="dish-name">Cheesecake agli agrumi</p><p class="dish-desc">con tartare di salmone, aneto e soia</p></div>
+          <div class="dish"><p class="dish-name">Tonno fresco tataki al sesamo nero</p><p class="dish-desc">con maionese di cipolla rossa</p></div>
+          <div class="dish"><p class="dish-name">Baccalà mantecato</p><p class="dish-desc">su crostone al rosmarino, polvere di olive nere e olio al prezzemolo</p></div>
+        </div>
+        <span class="orn" aria-hidden="true"><i></i></span>
+        <div class="mc-course">
+          <p class="mc-label">Primo</p>
+          <div class="dish"><p class="dish-name">Paccheri all'astice</p><p class="dish-desc">rigati e trafilati al bronzo, con pachino rosso, crema di datterino giallo e crumble al basilico</p></div>
+        </div>
+        <span class="orn" aria-hidden="true"><i></i></span>
+        <div class="mc-course">
+          <p class="mc-label">Secondo</p>
+          <div class="dish"><p class="dish-name">Ricciola pacifica in panure alle mandorle</p><p class="dish-desc">su cimette di rape saltate</p></div>
+        </div>
+        <span class="orn" aria-hidden="true"><i></i></span>
+        <div class="mc-course">
+          <p class="mc-label">La tradizione</p>
+          <div class="dish"><p class="dish-name">Zampone e lenticchie in umido</p></div>
+        </div>
+        <span class="orn" aria-hidden="true"><i></i></span>
+        <div class="mc-course">
+          <p class="mc-label">Dolce</p>
+          <div class="dish"><p class="dish-name">Panettone artigianale</p><p class="dish-desc">con frutta e bollicine</p></div>
+        </div>
+        <span class="orn" aria-hidden="true"><i></i></span>
+        <div class="mc-course">
+          <p class="mc-label">A fine veglione</p>
+          <div class="dish"><p class="dish-name">Cornetto e cappuccino</p></div>
+        </div>
+        <p class="mc-foot">Bevande incluse</p>
+      </div>
 
       <div class="price">
         <span class="price-label">A persona</span>
         <span class="price-val">€ 90</span>
         <span class="price-note">Bevande incluse</span>
+        <p class="price-fine">Tariffe per persona. Soggiorno gratuito per i bambini fino a 3 anni e riduzione del 50% dai 3 ai 13 anni.</p>
       </div>
     </div>
     <footer class="sheet-cta">
@@ -750,14 +825,11 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
         Chiama per prenotare
       </a>
-      <a class="btn btn-line" data-mail="Prenotazione Gran Cenone di San Silvestro" href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-        Scrivi una email
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il Gran Cenone di San Silvestro del 31 dicembre." href="#" hidden>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il Gran Cenone di San Silvestro del 31 dicembre." href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        WhatsApp
+        Scrivi su WhatsApp
       </a>
+      <p class="cta-mail">oppure scrivi a <a data-mail="Prenotazione Gran Cenone di San Silvestro" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
     </footer>
   </section>
 
@@ -779,11 +851,8 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         <span class="price-label">A persona, a notte</span>
         <span class="price-val">€ 60</span>
         <span class="price-note">Formula solo pernottamento</span>
+        <p class="price-fine">Tariffe per persona. Soggiorno gratuito per i bambini fino a 3 anni e riduzione del 50% dai 3 ai 13 anni.</p>
       </div>
-
-      <dl class="facts">
-        <div><dt>Bambini</dt><dd>Gratis fino a 3 anni, sconto del 50% dai 3 ai 13 anni</dd></div>
-      </dl>
 
       <h3>Da abbinare</h3>
       <div class="pair">
@@ -802,14 +871,11 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
         Chiama per prenotare
       </a>
-      <a class="btn btn-line" data-mail="Prenotazione notte in hotel - Capodanno 2027" href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-        Scrivi una email
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sulla formula solo pernottamento per Capodanno." href="#" hidden>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare la formula solo pernottamento per Capodanno." href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        WhatsApp
+        Scrivi su WhatsApp
       </a>
+      <p class="cta-mail">oppure scrivi a <a data-mail="Prenotazione notte in hotel - Capodanno 2027" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
     </footer>
   </section>
 
@@ -831,7 +897,8 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
       <div class="price">
         <span class="price-label">A persona, intero soggiorno</span>
         <span class="price-val">€ 310</span>
-        <span class="price-note">Bambini gratis fino a 3 anni, sconto del 50% dai 3 ai 13 anni</span>
+        <span class="price-note">2 notti con Gran Cenone, pranzo e cena del 1° gennaio</span>
+        <p class="price-fine">Tariffe per persona. Soggiorno gratuito per i bambini fino a 3 anni e riduzione del 50% dai 3 ai 13 anni.</p>
       </div>
 
       <h3>Cosa comprende</h3>
@@ -894,14 +961,11 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
         Chiama per prenotare
       </a>
-      <a class="btn btn-line" data-mail="Prenotazione soggiorno di Capodanno 31/12 - 02/01" href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-        Scrivi una email
-      </a>
-      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sul soggiorno di Capodanno dal 31 dicembre al 2 gennaio." href="#" hidden>
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei prenotare il soggiorno di Capodanno dal 31 dicembre al 2 gennaio." href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
-        WhatsApp
+        Scrivi su WhatsApp
       </a>
+      <p class="cta-mail">oppure scrivi a <a data-mail="Prenotazione soggiorno di Capodanno 31/12 - 02/01" href="#"><span data-mail-text>info@hoteldellestelle.it</span></a></p>
     </footer>
   </section>
 
@@ -933,8 +997,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
 
       <h3>Come arrivare</h3>
       <ul class="stars">
-        <li>In auto: lungo la SS18 Tirrena Inferiore, all'altezza di Sangineto Lido</li>
-        <li>In aereo: aeroporto di Lamezia Terme</li>
+        <li><b>In auto:</b> lungo la SS18 Tirrena Inferiore, all'altezza di Sangineto Lido</li>
+        <li><b>In treno:</b> le stazioni più vicine sono Capo Bonifati, Belvedere Marittimo e Scalea</li>
+        <li><b>Alta velocità:</b> fermate di Scalea e Paola</li>
       </ul>
     </div>
     <footer class="sheet-cta">
@@ -942,9 +1007,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.2L20 4l-7.2 16.5-1.9-7.4z"/></svg>
         Apri in Google Maps
       </a>
-      <a class="btn btn-line" data-tel href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
-        Chiama
+      <a class="btn btn-line" data-wa="Buongiorno, vorrei informazioni sul Capodanno all'Hotel delle Stelle." href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
+        Scrivi su WhatsApp
       </a>
     </footer>
   </section>
@@ -956,9 +1021,9 @@ html.has-sheet, html.has-sheet body { overflow: hidden; }
   const CONTATTI = {
     telefono: '0982 96091',
     email: 'info@hoteldellestelle.it',
-    facebook: 'https://www.facebook.com/',   // incolla il link della pagina Facebook dell'hotel
-    instagram: 'https://www.instagram.com/', // incolla il link del profilo Instagram dell'hotel
-    whatsapp: ''                             // facoltativo: solo cifre col 39 davanti (es. 393331234567); vuoto = pulsante nascosto
+    facebook: 'https://www.facebook.com/share/19kFYuxb78/',
+    instagram: 'https://www.instagram.com/hoteldellestelle/',
+    whatsapp: '39098296091'   // solo cifre, con il 39 davanti; vuoto = pulsanti WhatsApp nascosti
   };
   const INDIRIZZO = 'Hotel delle Stelle Beach Resort, Viale della Libertà 29, 87020 Sangineto Lido (CS)';
   /* ===================================================== */
